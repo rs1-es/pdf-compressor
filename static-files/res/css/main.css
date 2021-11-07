@@ -1,0 +1,485 @@
+* {
+    box-sizing: border-box;
+}
+
+body, button {
+    font-family: 'Roboto', sans-serif;
+}
+
+button {
+    display: block;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body div {
+    overflow-x: auto;
+}
+
+
+h1 {
+    margin: 0;
+}
+
+a {
+    
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    width: 100%;
+}
+
+p {
+    margin: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+}
+
+header, footer {
+    background-color: rgb(25,25,100);
+    color: white;
+}
+
+header {
+    padding: 0.3em;
+    display: grid;
+    grid-template-columns: 10% auto;
+    align-items: center;
+}
+
+.logo-header {
+    display: grid;
+}
+
+.logo-header img {
+    max-width: 100%;
+    align-self: center;
+}
+
+.title-header {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+main {
+    padding: 0.8em;
+    margin: 0 auto;
+}
+
+.intro {
+    font-size: 2em;
+    text-align: center;
+}
+
+.intro p {
+    padding: 0.2em;
+}
+
+.sub {
+    font-size: 0.8em;
+    color: rgb(75,75,75);
+}
+
+.steps {
+    display: grid;
+    margin: auto;
+    gap: 1em;
+    width: 80%;
+}
+
+.step {
+    display: grid;
+    grid-template-rows: 110px max-content;
+}
+
+.step-intro {
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+    padding: 0.5em;
+    gap: 0.5em;
+    text-align: center;
+}
+
+.step-intro span {
+    display: block;
+    font-size: 0.8em;
+}
+
+.step-num {
+    display: grid;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    justify-self: right;
+    align-content: center;
+    font-size: 1.5em;
+    padding: 0.5em;
+    background-color: rgb(0,200,0);
+    border: 1px solid rgb(0,150,0);
+    color: white;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.step-name {
+    padding: 0.5em;
+    font-size: 1.2em;
+}
+
+.step-actions {
+    width: 100%;
+    text-align: center;
+    display: grid;
+    gap: 0.7em;
+}
+
+.final-btns {
+    gap: 1.5em;
+}
+
+.step-action {
+    border-radius: 20px;
+}
+
+.action-disabled {
+    border: 1px solid rgb(200,200,200);
+    color: rgb(150, 150, 150);
+}
+
+.action-enabled {
+    color: black;
+    border: 1px solid black;
+}
+
+
+.step-action-name {
+    padding: 0.5em 0;
+    font-size: 1.2em;
+}
+
+.step-action-name:hover {
+    cursor: pointer;
+}
+
+.step-action-content {
+    padding: 0 0.5em 0.5em 0.5em;
+}
+
+.action-content-enabled {
+    display: block;
+}
+
+.action-content-disabled {
+    display: none;
+}
+
+.step-action-content p {
+    padding: 0 0.5em 0.5em 0.5em;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+.enabled {
+    background-color: rgb(0,0,200);
+}
+
+.enabled:hover {
+    background-color: rgb(25,25,255);
+    cursor: pointer;
+}
+
+.disabled {
+    background-color: rgb(150,150,150);   
+}
+
+.text-disabled {
+    color:rgb(150, 150, 150);
+}
+
+#select-file-btn, #apply-btn, #reset-btn{
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    padding: 0.5em;
+    border-radius: 20px;
+}
+
+#reset-btn.enabled {
+    background-color: rgb(200,0,0);
+}
+
+#reset-btn.enabled:hover {
+    background-color: rgb(255,0,0);
+}
+
+.filename {
+    padding: 0.5em;
+    color: rgb(100,100,100);
+    font-size: 0.9em;
+    overflow: hidden;
+}
+
+.quality-range {
+    font-size: 0.8em;
+}
+
+.quality-range input {
+    width: 80%;
+}
+
+output {
+    font-size: 2em;
+    display: block;
+}
+
+#extract input {
+    border-radius: 10px;
+    border: 1px solid rgb(200,200,200);
+    padding: 0.5em;
+}
+
+.dimensionBox {
+    padding: 0.4em 0;
+    display: grid;
+    align-items: center;
+    gap: 0.5em;
+    grid-template-columns: repeat(2, auto);
+}
+
+.response-bg {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.response-window {
+    background-color: white;
+    width: 80%;
+    padding: 0.8em;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px 1px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.rw-header.one {
+    display: grid;
+}
+
+.rw-header.two {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 1fr auto;
+}
+
+.rw-header-text {
+    padding: 0.2em;
+    color: rgb(0, 0, 255);
+    font-style: italic;
+    text-align: center;
+}
+
+.rw-header-text-main {
+    font-size: 1.2em;
+    padding-bottom: 0.2em;    
+}
+
+.rw-header-text-sub {
+    font-size: 0.9em;  
+    padding-bottom: 0.1em;
+}
+
+.rw-header-close {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 1.3em;
+    background-color: rgb(200,0,0);
+    color: white;
+    align-items: center;
+    justify-items: center;
+}
+
+.rw-header-close:hover {
+    cursor:pointer;
+    background-color: rgb(255,0,0);
+}
+
+.rw-main {
+    overflow-y: scroll;
+    max-height: 100px;
+}
+
+.rw-main-list {
+    padding: 0.5em 0;
+}
+
+.rw-main-list li {
+    list-style-type: none;
+    color: rgb(0,0,255);
+    padding: 0.2em 0;
+}
+
+.rw-main-text {
+    color: rgb(0,0,255);
+    text-align: center;
+    padding: 0.2em 0;
+}
+
+.rw-main-text a {
+    font-size: 1.1em;
+    word-wrap: break-word;
+    text-decoration: underline;
+}
+
+.rw-main-text a:hover {
+    color: rgb(75,75,255);
+}
+
+
+.rw-main-btns {
+    display: grid;
+    width: 70%;
+    margin: auto;
+    padding: 0.2em 0;
+}
+
+.rw-main-btns a {
+    color: white;
+    background-color: rgb(0, 100, 255);
+    padding: 0.5em;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgb(100,100,100);
+}
+
+@keyframes loadAnimation {
+    to {
+        left: 100%;
+    }
+}
+
+.rw-loadbar {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: -100%;
+    height: 5px;
+    background-color: rgb(0, 0, 255);
+    background: linear-gradient(to left, rgb(150,150,255), rgb(0,0,200));
+    animation-name: loadAnimation;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+
+.file-link {
+    color: rgb(0,0,255);
+    font-size: 1.1em;
+}
+
+.file-link:hover {
+    color: rgb(100,100,255);
+}
+
+footer {
+    padding: 0.4em;
+    font-size: 1em;
+}
+
+footer p {
+    padding: 0.2em 0;
+}
+
+footer a {
+    text-decoration: underline;
+}
+
+.footer-block {
+    display: grid;
+    width: 100%;
+    gap: 1em;
+    padding-bottom: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin: auto;
+}
+
+.footer-intro-title, .footer-feedback-title {
+    font-size: 1.5em;
+    padding: 0.3em 0;
+}
+
+.footer-intro-title {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 25px auto;
+    align-items: center;
+}
+
+.footer-intro-title span {
+    padding-left: 0.3em;
+}
+
+.footer-info {
+    text-align: center;
+    font-size: 0.9em;
+    color: rgb(225,225,225);
+}
+
+@media screen and (min-width: 520px) {
+    header {
+        grid-template-columns: 50px auto;
+    }
+    
+    .title-header {
+        text-align: left;
+        padding-left: 0.5em;
+        text-transform: uppercase;
+    }
+}
+
+@media screen and (min-width: 720px) {
+
+    main {
+        width: 100%;
+    }
+
+    .steps {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1000px;
+        width: 90%;
+    }
+
+    .response-window {
+        width: 60%;
+        max-width: 500px;
+    }
+
+    .footer-block {
+        max-width: 1100px;
+    }
+}

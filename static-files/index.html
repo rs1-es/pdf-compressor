@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compress or manipulate a PDF in three simple steps">
+    <meta name="keywords" content="pdf, compress, ghostcript, cloud, dpi">
+    <meta name="author" content="RS1">
+    <meta name="og:title" content="RS1 PDF Compressor">
+    <meta name="og:description" content="Compress or manipulate a PDF in three simple steps">
+    <meta name="og:url" content="https://pdfcompressor.rs1.es">
+    <meta name="og:type" content="website">
+    <meta name="og:image" content="https://pdfcompressor.rs1.es/apple-touch-icon.png">
+    <meta name="og:image:width" content="256">
+    <meta name="og:image:height" content="256">
+    <meta name="og:site_name" content="RS1 PDF Compressor">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="RS1 PDF Compressor">
+    <meta name="twitter:description" content="Compress or manipulate a PDF in three simple steps">
+    <meta name="twitter:image" content="https://pdfcompressor.rs1.es/apple-touch-icon.png">
+    <meta name="twitter:url" content="https://pdfcompressor.rs1.es">
+    <title>RS1 PDF Compressor - pdfcompressor.rs1.es</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="res/css/main.min.css?v=20210822_1942">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+</head>
+
+<body>
+    <div class="content">
+        <header>
+            <div class="logo-header">
+                <img src="res/imgs/logo-header.png" alt="web logo">
+            </div>
+            <div class="title-header">
+                <h1><a href="/">PDF Compressor</a></h1>
+            </div>
+        </header>
+        <main>
+            <div class="intro">
+                <p>PDF compression in three simple steps</p>
+                <p class="sub">Files are deleted every 24 hours</p>
+            </div>
+            <div class="steps">
+                <div class="step" id="dropFileHere">
+                    <div class="step-intro">
+                        <div class="step-num">1</div>
+                        <div class="step-name">Choose files
+                            <span>max. 400MB per file</span>
+                            <span>You can drag and drop on this area</span>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button id="select-file-btn" class="enabled">Select files</button>
+                        <div class="filename"></div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-intro">
+                        <div class="step-num">2</div>
+                        <div class="step-name">Choose transformations<span>Click the name to activate</span>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <div class="step-action action-disabled" id="compress">
+                            <div class="step-action-name" id="compress-name">Compress</div>
+                            <div class="step-action-content action-content-disabled">
+                                <p>Select image quality.</p>
+                                <form class="step-action-content quality-range"
+                                    oninput="x.value=parseInt(a.value) + ' dpi'">60
+                                    <input type="range" name="a" id="quality-input" value="150" max="300" min="60"
+                                        autocomplete="off">300
+                                    <output name="x" for="quality-input">150 dpi</output>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="step-action action-disabled" id="merge">
+                            <div class="step-action-name" id="merge-name">Merge</div>
+                        </div>
+
+                        <div class="step-action action-disabled" id="extract">
+                            <div class="step-action-name" id="extract-name">Extract pages</div>
+                            <div class="step-action-content action-content-disabled">
+                                <p>You can fill in one or both fields.</p>
+                                <div class="dimensionBox">
+                                    <label for="start-input">Start page:</label>
+                                    <input type="number" name="start-number" class="resize-inputs" id="start-input"
+                                        autocomplete="off">
+                                </div>
+                                <div class="dimensionBox">
+                                    <label for="end-input">End page:</label>
+                                    <input type="number" name="end" class="resize-inputs" id="end-input"
+                                        autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-action action-disabled" id="converttoimage">
+                            <div class="step-action-name" id="converttoimage-name">Convert to Image</div>
+                            <div class="step-action-content action-content-disabled">
+                                <p>Select image quality.</p>
+                                <form class="step-action-content quality-range"
+                                    oninput="x.value=parseInt(a.value) + ' dpi'">60
+                                    <input type="range" name="a" id="quality-input-image" value="150" max="300" min="60"
+                                        autocomplete="off">300
+                                    <output name="x" for="quality-input-image">150 dpi</output>
+                                </form>
+                                <p>You can select a page range (optional).</p>
+                                <div class="dimensionBox">
+                                    <label for="start-input-image">Start page:</label>
+                                    <input type="number" name="start-number" class="resize-inputs"
+                                        id="start-input-image" autocomplete="off">
+                                </div>
+                                <div class="dimensionBox">
+                                    <label for="end-input-image">End page:</label>
+                                    <input type="number" name="end" class="resize-inputs" id="end-input-image"
+                                        autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-action action-disabled" id="filetopdf">
+                            <div class="step-action-name" id="filetopdf-name">File to PDF</div>
+                            <div class="step-action-content action-content-disabled">
+                                <p>Select image quality.</p>
+                                <form class="step-action-content quality-range"
+                                    oninput="x.value=parseInt(a.value) + ' dpi'">60
+                                    <input type="range" name="a" id="quality-input-filetopdf" value="150" max="300"
+                                        min="60" autocomplete="off">300
+                                    <output name="x" for="quality-input-filetopdf">150 dpi</output>
+                                </form>
+                                <div class="checkMergeBox">
+                                    <input type="checkbox" name="merge" id="checkmerge" autocomplete="off"><label
+                                        for="checkmerge">Merge files</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-intro">
+                        <div class="step-num">3</div>
+                        <div class="step-name">Click to Apply</div>
+                    </div>
+                    <div class="step-actions final-btns">
+                        <button id="apply-btn" class="disabled" disabled autocomplete="off">Apply changes</button>
+                        <button id="reset-btn" class="disabled" disabled>RESET</button>
+                    </div>
+                </div>
+            </div>
+            <div class="result"></div>
+        </main>
+        <footer>
+            <div class="footer-block">
+                <div class="footer-intro">
+                    <div class="footer-intro-title">
+                        <img src="res/imgs/logo-header.png" alt="">
+                        <span>PDF Compressor</span>
+                    </div>
+                    <div class="footer-intro-description">
+                        <p>This website allows simple PDF compression.</p>
+                        <p>This is part of <a href="https://rs1.es">RS1 Linux Tools</a>.</p>
+                    </div>
+                </div>
+                <div class="footer-feedback">
+                    <div class="footer-feedback-title">
+                        <span>Support & Feedback</span>
+                    </div>
+                    <div class="footer-feedback-desc">
+                        <p>If you have any troubles or suggestions, you can send an email to <a
+                                href="mailto:admin@rs1.es">admin@rs1.es</a>.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-info">
+                <span>2020 - Created by RS1.</span>
+            </div>
+        </footer>
+    </div>
+    <script src="res/js/aws-sdk-2.770.0.min.js"></script>
+    <script src="res/js/main.min.js?v=20210816_1945"></script>
+</body>
+
+</html>

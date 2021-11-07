@@ -1,0 +1,75 @@
+service: pdf-compressor
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  stage: prod
+  region: eu-west-1
+  tags:
+    project: pdf-compressor
+  httpApi:
+    useProviderTags: true
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - 's3:*'
+          Resource: 'arn:aws:s3:::11111111111111111111/*'
+
+functions:
+  compressfile:
+    handler: lambda/compressfile/index.handler
+    memorySize: 2048
+    timeout: 300
+    layers:
+      - arn:aws:lambda:eu-west-1:ffffffffffff:layer:image-magick:1
+      - arn:aws:lambda:eu-west-1:ffffffffffff:layer:ghostscript:1
+  converttoimage:
+    handler: lambda/converttoimage/index.handler
+    memorySize: 2048
+    timeout: 300
+    layers:
+      - arn:aws:lambda:eu-west-1:ffffffffffff:layer:image-magick:1
+      - arn:aws:lambda:eu-west-1:ffffffffffff:layer:ghostscript:1
+  documenttopdf:
+    handler: lambda/documenttopdf/index.handler
+    memorySize: 2048
+    timeout: 300
+    layers:
+      - arn:aws:lambda:eu-west-1:ffffffffffff:layer:image-magick:1
+      - arn:aws:lambda:eu-west-1:ffffffffffff:layer:ghostscript:1
+      - arn:aws:lambda:eu-west-1:764866452798:layer:libreoffice-brotli:1
+      - arn:aws:lambda:eu-west-1:ffffffffffff:layer:lambdafs:1
+  extractpages:
+    handler: lambda/extractpages/index.handler
+    memorySize: 2048
+    timeout: 300
+    layers:
+      - arn:aws:lambda:eu-west-1:ffffffffffff:layer:image-magick:1
+      - arn:aws:lambda:eu-west-1:ffffffffffff:layer:ghostscript:1
+  imagetopdf:
+    handler: lambda/imagetopdf/index.handler
+    memorySize: 2048
+    timeout: 300
+    layers:
+      - arn:aws:lambda:eu-west-1:302561554226:layer:image-magick:1
+      - arn:aws:lambda:eu-west-1:302561554226:layer:ghostscript:1
+  mergefiles:
+    handler: lambda/mergefiles/index.handler
+    memorySize: 2048
+    timeout: 300
+    layers:
+      - arn:aws:lambda:eu-west-1:ffffffffffff:layer:image-magick:1
+      - arn:aws:lambda:eu-west-1:ffffffffffff:layer:ghostscript:1
+  uploadfile:
+    handler: lambda/uploadfile/index.handler
+    memorySize: 128
+    timeout: 10
+    events:
+      - httpApi:
+          path: /uploadfile
+          method: post
